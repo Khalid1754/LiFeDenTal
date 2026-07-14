@@ -109,5 +109,51 @@ public class LiFeDenTalDbContext : DbContext
             new TreatmentRoom { Id = Guid.Parse("22222222-2222-2222-2222-222222222222"), Name = "Rum 2", IsActive = true },
             new TreatmentRoom { Id = Guid.Parse("33333333-3333-3333-3333-333333333333"), Name = "Rum 3", IsActive = true }
         );
+
+        var adminId = Guid.Parse("aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa");
+        var dentistUserId = Guid.Parse("bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb");
+        var dentistId = Guid.Parse("cccccccc-cccc-cccc-cccc-cccccccccccc");
+
+        modelBuilder.Entity<User>().HasData(
+            new User
+            {
+                Id = adminId,
+                Email = "admin@lifedental.se",
+                FirstName = "Khalid",
+                LastName = "Hassan",
+                Role = UserRole.Admin,
+                PasswordHash = "",
+                Password = "Admin123!",
+                IsActive = true,
+                CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, DateTimeKind.Utc)
+            },
+            new User
+            {
+                Id = dentistUserId,
+                Email = "dentist@lifedental.se",
+                FirstName = "Hirsi",
+                LastName = "Aden",
+                Role = UserRole.Dentist,
+                PasswordHash = "",
+                Password = "Dentist123!",
+                IsActive = true,
+                CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, DateTimeKind.Utc)
+            }
+        );
+
+        modelBuilder.Entity<Dentist>().HasData(
+            new Dentist
+            {
+                Id = dentistId,
+                UserId = dentistUserId,
+                LicenseNumber = "LIC-0001",
+                Specialization = "Allmän tandvård"
+            }
+        );
+
+
+
+
     }
+
 }

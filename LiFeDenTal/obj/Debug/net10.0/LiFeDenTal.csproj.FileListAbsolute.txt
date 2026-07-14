@@ -160,3 +160,6 @@ C:\Users\khali\OneDrive\Dokument\GitHub\LiFeDenTal\LiFeDenTal\obj\Debug\net10.0\
 C:\Users\khali\OneDrive\Dokument\GitHub\LiFeDenTal\LiFeDenTal\obj\Debug\net10.0\LiFeDenTal.pdb
 C:\Users\khali\OneDrive\Dokument\GitHub\LiFeDenTal\LiFeDenTal\obj\Debug\net10.0\LiFeDenTal.genruntimeconfig.cache
 C:\Users\khali\OneDrive\Dokument\GitHub\LiFeDenTal\LiFeDenTal\obj\Debug\net10.0\ref\LiFeDenTal.dll
+C:\Users\khali\OneDrive\Dokument\GitHub\LiFeDenTal\LiFeDenTal\bin\Debug\net10.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\khali\OneDrive\Dokument\GitHub\LiFeDenTal\LiFeDenTal\bin\Debug\net10.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\khali\OneDrive\Dokument\GitHub\LiFeDenTal\LiFeDenTal\bin\Debug\net10.0\Swashbuckle.AspNetCore.SwaggerUI.dll

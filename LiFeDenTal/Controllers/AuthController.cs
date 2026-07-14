@@ -1,13 +1,14 @@
-﻿using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using System.Security.Claims;
-using LiFeDenTal.Data;
+﻿using LiFeDenTal.Data;
 using LiFeDenTal.DTOs;
 using LiFeDenTal.Models;
 using LiFeDenTal.Services;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using System.Security.Claims;
 
 namespace LiFeDenTal.Controllers;
 
@@ -53,16 +54,28 @@ public class AuthController : ControllerBase
         if (user is null || !user.IsActive)
             return Unauthorized("Fel email eller lösenord.");
 
-        if (!_hasher.Verify(user, user.PasswordHash, request.Password))
+        // Personal (Dentist, Nurse, Receptionist, Admin) — klartext
+        bool passwordOk;
+        if (user.Role != UserRole.Patient)
+        {
+            passwordOk = user.Password == request.Password;
+        }
+        else
+        {
+            // Patienter använder fortfarande hashning
+            passwordOk = _hasher.Verify(user, user.PasswordHash, request.Password);
+        }
+
+        if (!passwordOk)
             return Unauthorized("Fel email eller lösenord.");
 
         var claims = new List<Claim>
-        {
-            new(ClaimTypes.NameIdentifier, user.Id.ToString()),
-            new(ClaimTypes.Email, user.Email),
-            new(ClaimTypes.GivenName, user.FirstName),
-            new(ClaimTypes.Role, user.Role.ToString())
-        };
+    {
+        new(ClaimTypes.NameIdentifier, user.Id.ToString()),
+        new(ClaimTypes.Email, user.Email),
+        new(ClaimTypes.GivenName, user.FirstName),
+        new(ClaimTypes.Role, user.Role.ToString())
+    };
 
         var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
         await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(identity));
@@ -88,5 +101,18 @@ public class AuthController : ControllerBase
         var role = User.FindFirstValue(ClaimTypes.Role)!;
 
         return Ok(new UserResponse(id, email, "", firstName, role));
+    }
+
+    [HttpGet("dev/generate-hashes")]
+    public IActionResult GenerateHashes()
+    {
+        var hasher = new PasswordHasher<User>();
+        var dummy = new User();
+
+        return Ok(new
+        {
+            AdminHash = hasher.HashPassword(dummy, "Admin123!"),
+            DentistHash = hasher.HashPassword(dummy, "Dentist123!")
+        });
     }
 }

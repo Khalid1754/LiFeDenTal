@@ -123,6 +123,15 @@ namespace LiFeDenTal.Migrations
                         .IsUnique();
 
                     b.ToTable("Dentists");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("cccccccc-cccc-cccc-cccc-cccccccccccc"),
+                            LicenseNumber = "LIC-0001",
+                            Specialization = "Allmän tandvård",
+                            UserId = new Guid("bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb")
+                        });
                 });
 
             modelBuilder.Entity("LiFeDenTal.Models.MedicalRecord", b =>
@@ -278,6 +287,9 @@ namespace LiFeDenTal.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Password")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("PasswordHash")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -294,6 +306,32 @@ namespace LiFeDenTal.Migrations
                         .IsUnique();
 
                     b.ToTable("Users");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa"),
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Email = "admin@lifedental.se",
+                            FirstName = "Khalid",
+                            IsActive = true,
+                            LastName = "Hassan",
+                            Password = "Admin123!",
+                            PasswordHash = "",
+                            Role = 5
+                        },
+                        new
+                        {
+                            Id = new Guid("bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb"),
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Email = "dentist@lifedental.se",
+                            FirstName = "Hirsi",
+                            IsActive = true,
+                            LastName = "Aden",
+                            Password = "Dentist123!",
+                            PasswordHash = "",
+                            Role = 1
+                        });
                 });
 
             modelBuilder.Entity("LiFeDenTal.Models.Appointment", b =>

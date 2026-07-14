@@ -10,7 +10,21 @@ public class PasswordHasher
     public string Hash(User user, string password) =>
         _hasher.HashPassword(user, password);
 
-    public bool Verify(User user, string hashedPassword, string providedPassword) =>
-        _hasher.VerifyHashedPassword(user, hashedPassword, providedPassword)
-            != PasswordVerificationResult.Failed;
+    public bool Verify(User user, string hashedPassword, string providedPassword)
+    {
+        if (string.IsNullOrEmpty(hashedPassword))
+            return false;
+
+        try
+        {
+            return _hasher.VerifyHashedPassword(user, hashedPassword, providedPassword)
+                != PasswordVerificationResult.Failed;
+        }
+        catch (FormatException)
+        {
+            // Stored hash is not a valid format (corrupted or from another scheme).
+            // Treat as failed verification; consider logging for investigation.
+            return false;
+        }
+    }
 }

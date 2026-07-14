@@ -34,6 +34,7 @@ namespace LiFeDenTal.Migrations
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Email = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     PasswordHash = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Password = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     FirstName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -198,6 +199,20 @@ namespace LiFeDenTal.Migrations
                     { new Guid("22222222-2222-2222-2222-222222222222"), null, true, "Rum 2" },
                     { new Guid("33333333-3333-3333-3333-333333333333"), null, true, "Rum 3" }
                 });
+
+            migrationBuilder.InsertData(
+                table: "Users",
+                columns: new[] { "Id", "CreatedAt", "Email", "FirstName", "IsActive", "LastName", "Password", "PasswordHash", "PhoneNumber", "Role" },
+                values: new object[,]
+                {
+                    { new Guid("aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa"), new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), "admin@lifedental.se", "Khalid", true, "Hassan", "Admin123!", "", null, 5 },
+                    { new Guid("bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb"), new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), "dentist@lifedental.se", "Hirsi", true, "Aden", "Dentist123!", "", null, 1 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Dentists",
+                columns: new[] { "Id", "LicenseNumber", "Specialization", "UserId" },
+                values: new object[] { new Guid("cccccccc-cccc-cccc-cccc-cccccccccccc"), "LIC-0001", "Allmän tandvård", new Guid("bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb") });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Appointments_DentistId_StartTime",
