@@ -17,7 +17,8 @@ namespace LiFeDenTal.Migrations
                 name: "TreatmentRooms",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     IsActive = table.Column<bool>(type: "bit", nullable: false)
@@ -71,7 +72,8 @@ namespace LiFeDenTal.Migrations
                 name: "Dentists",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     LicenseNumber = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Specialization = table.Column<string>(type: "nvarchar(max)", nullable: true)
@@ -91,7 +93,8 @@ namespace LiFeDenTal.Migrations
                 name: "Patients",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     DateOfBirth = table.Column<DateOnly>(type: "date", nullable: false),
                     PersonalIdentityNumber = table.Column<string>(type: "nvarchar(450)", nullable: true),
@@ -117,9 +120,9 @@ namespace LiFeDenTal.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    PatientId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    DentistId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    TreatmentRoomId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    PatientId = table.Column<int>(type: "int", nullable: false),
+                    DentistId = table.Column<int>(type: "int", nullable: false),
+                    TreatmentRoomId = table.Column<int>(type: "int", nullable: false),
                     StartTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     EndTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Status = table.Column<int>(type: "int", nullable: false),
@@ -158,8 +161,8 @@ namespace LiFeDenTal.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    PatientId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    DentistId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    PatientId = table.Column<int>(type: "int", nullable: false),
+                    DentistId = table.Column<int>(type: "int", nullable: false),
                     AppointmentId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
                     Diagnosis = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Treatment = table.Column<string>(type: "nvarchar(max)", nullable: false),
@@ -195,9 +198,9 @@ namespace LiFeDenTal.Migrations
                 columns: new[] { "Id", "Description", "IsActive", "Name" },
                 values: new object[,]
                 {
-                    { new Guid("11111111-1111-1111-1111-111111111111"), null, true, "Rum 1" },
-                    { new Guid("22222222-2222-2222-2222-222222222222"), null, true, "Rum 2" },
-                    { new Guid("33333333-3333-3333-3333-333333333333"), null, true, "Rum 3" }
+                    { 1, null, true, "Rum 1" },
+                    { 2, null, true, "Rum 2" },
+                    { 3, null, true, "Rum 3" }
                 });
 
             migrationBuilder.InsertData(
@@ -208,11 +211,6 @@ namespace LiFeDenTal.Migrations
                     { new Guid("aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa"), new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), "admin@lifedental.se", "Khalid", true, "Hassan", "Admin123!", "", null, 5 },
                     { new Guid("bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb"), new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), "dentist@lifedental.se", "Hirsi", true, "Aden", "Dentist123!", "", null, 1 }
                 });
-
-            migrationBuilder.InsertData(
-                table: "Dentists",
-                columns: new[] { "Id", "LicenseNumber", "Specialization", "UserId" },
-                values: new object[] { new Guid("cccccccc-cccc-cccc-cccc-cccccccccccc"), "LIC-0001", "Allmän tandvård", new Guid("bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb") });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Appointments_DentistId_StartTime",

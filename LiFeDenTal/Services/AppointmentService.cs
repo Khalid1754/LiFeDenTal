@@ -32,7 +32,7 @@ public class AppointmentService
     }
 
     // Kolla om tandläkaren är ledig
-    private async Task<bool> IsDentistAvailableAsync(Guid dentistId, DateTime start, DateTime end)
+    private async Task<bool> IsDentistAvailableAsync(int dentistId, DateTime start, DateTime end)
     {
         return !await _db.Appointments.AnyAsync(a =>
             a.DentistId == dentistId &&
@@ -43,7 +43,7 @@ public class AppointmentService
 
     // Patient bokar tid
     public async Task<(bool Success, string? Error, AppointmentResponse? Result)>
-        CreateAppointmentAsync(Guid patientUserId, CreateAppointmentRequest request)
+    CreateAppointmentAsync(Guid patientUserId, CreateAppointmentRequest request)
     {
         // Validera tid
         if (request.StartTime >= request.EndTime)

@@ -1,7 +1,7 @@
 ﻿namespace LiFeDenTal.DTOs;
 
 public record CreateAppointmentRequest(
-    Guid DentistId,
+    int DentistId,
     DateTime StartTime,
     DateTime EndTime,
     string? Reason

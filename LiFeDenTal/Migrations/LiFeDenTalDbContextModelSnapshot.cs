@@ -40,8 +40,8 @@ namespace LiFeDenTal.Migrations
                     b.Property<Guid>("CreatedByUserId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("DentistId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("DentistId")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("EndTime")
                         .HasColumnType("datetime2");
@@ -49,8 +49,8 @@ namespace LiFeDenTal.Migrations
                     b.Property<string>("Notes")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("PatientId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("PatientId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Reason")
                         .HasColumnType("nvarchar(max)");
@@ -61,8 +61,8 @@ namespace LiFeDenTal.Migrations
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
-                    b.Property<Guid>("TreatmentRoomId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("TreatmentRoomId")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -100,9 +100,11 @@ namespace LiFeDenTal.Migrations
 
             modelBuilder.Entity("LiFeDenTal.Models.Dentist", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("LicenseNumber")
                         .IsRequired()
@@ -123,15 +125,6 @@ namespace LiFeDenTal.Migrations
                         .IsUnique();
 
                     b.ToTable("Dentists");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("cccccccc-cccc-cccc-cccc-cccccccccccc"),
-                            LicenseNumber = "LIC-0001",
-                            Specialization = "Allmän tandvård",
-                            UserId = new Guid("bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb")
-                        });
                 });
 
             modelBuilder.Entity("LiFeDenTal.Models.MedicalRecord", b =>
@@ -146,8 +139,8 @@ namespace LiFeDenTal.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid>("DentistId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("DentistId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Diagnosis")
                         .IsRequired()
@@ -156,8 +149,8 @@ namespace LiFeDenTal.Migrations
                     b.Property<string>("Notes")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("PatientId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("PatientId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Prescription")
                         .HasColumnType("nvarchar(max)");
@@ -179,9 +172,11 @@ namespace LiFeDenTal.Migrations
 
             modelBuilder.Entity("LiFeDenTal.Models.Patient", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Address")
                         .HasColumnType("nvarchar(max)");
@@ -221,9 +216,11 @@ namespace LiFeDenTal.Migrations
 
             modelBuilder.Entity("LiFeDenTal.Models.TreatmentRoom", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
@@ -245,19 +242,19 @@ namespace LiFeDenTal.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("11111111-1111-1111-1111-111111111111"),
+                            Id = 1,
                             IsActive = true,
                             Name = "Rum 1"
                         },
                         new
                         {
-                            Id = new Guid("22222222-2222-2222-2222-222222222222"),
+                            Id = 2,
                             IsActive = true,
                             Name = "Rum 2"
                         },
                         new
                         {
-                            Id = new Guid("33333333-3333-3333-3333-333333333333"),
+                            Id = 3,
                             IsActive = true,
                             Name = "Rum 3"
                         });

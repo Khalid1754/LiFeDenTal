@@ -105,14 +105,13 @@ public class LiFeDenTalDbContext : DbContext
 
         // ---- Seed: tre behandlingsrum ----
         modelBuilder.Entity<TreatmentRoom>().HasData(
-            new TreatmentRoom { Id = Guid.Parse("11111111-1111-1111-1111-111111111111"), Name = "Rum 1", IsActive = true },
-            new TreatmentRoom { Id = Guid.Parse("22222222-2222-2222-2222-222222222222"), Name = "Rum 2", IsActive = true },
-            new TreatmentRoom { Id = Guid.Parse("33333333-3333-3333-3333-333333333333"), Name = "Rum 3", IsActive = true }
+            new TreatmentRoom { Id = 1, Name = "Rum 1", IsActive = true },
+            new TreatmentRoom { Id = 2, Name = "Rum 2", IsActive = true },
+            new TreatmentRoom { Id = 3, Name = "Rum 3", IsActive = true }
         );
 
         var adminId = Guid.Parse("aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa");
         var dentistUserId = Guid.Parse("bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb");
-        var dentistId = Guid.Parse("cccccccc-cccc-cccc-cccc-cccccccccccc");
 
         modelBuilder.Entity<User>().HasData(
             new User
@@ -138,16 +137,6 @@ public class LiFeDenTalDbContext : DbContext
                 Password = "Dentist123!",
                 IsActive = true,
                 CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, DateTimeKind.Utc)
-            }
-        );
-
-        modelBuilder.Entity<Dentist>().HasData(
-            new Dentist
-            {
-                Id = dentistId,
-                UserId = dentistUserId,
-                LicenseNumber = "LIC-0001",
-                Specialization = "Allmän tandvård"
             }
         );
 
