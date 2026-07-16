@@ -42,16 +42,16 @@ public class AuthController : ControllerBase
         user.PasswordHash = _hasher.Hash(user, request.Password);
 
         _db.Users.Add(user);
+        await _db.SaveChangesAsync(); // Spara user först så att user.Id sätts av databasen
 
-        // Skapa patientprofil automatiskt
+        // Nu har user.Id ett riktigt värde (t.ex. 3)
         var patient = new Patient
         {
             UserId = user.Id,
-            DateOfBirth = DateOnly.FromDateTime(DateTime.Today) // placeholder
+            DateOfBirth = DateOnly.FromDateTime(DateTime.Today)
         };
         _db.Patients.Add(patient);
-
-        await _db.SaveChangesAsync();
+        await _db.SaveChangesAsync(); // Spara patientprofilen
 
         return Ok(new UserResponse(user.Id, user.Email, user.FirstName, user.LastName, user.Role.ToString()));
     }

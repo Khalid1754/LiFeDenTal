@@ -54,9 +54,8 @@ public class AppointmentService
 
         // Hämta patientprofil
         var patient = await _db.Patients
+            .Include(p => p.User)  // Ladda in User-objektet
             .FirstOrDefaultAsync(p => p.UserId == patientUserId);
-        if (patient is null)
-            return (false, "Patientprofil hittades inte.", null);
 
         // Kolla att tandläkaren finns
         var dentist = await _db.Dentists
