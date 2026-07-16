@@ -3,7 +3,7 @@
 public class Patient
 {
     public int Id { get; set; } // int auto-increment
-    public Guid UserId { get; set; }
+    public int UserId { get; set; }
     public User User { get; set; } = null!;
 
     public DateOnly DateOfBirth { get; set; }

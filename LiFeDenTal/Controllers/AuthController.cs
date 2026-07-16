@@ -104,12 +104,12 @@ public class AuthController : ControllerBase
     [Authorize]
     public ActionResult<UserResponse> Me()
     {
-        var id = Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
+        var id = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
         var email = User.FindFirstValue(ClaimTypes.Email)!;
         var firstName = User.FindFirstValue(ClaimTypes.GivenName)!;
         var role = User.FindFirstValue(ClaimTypes.Role)!;
 
-        return Ok(new UserResponse(id, email, "", firstName, role));
+        return Ok(new UserResponse(id, email, firstName, firstName, role));
     }
 
     [HttpGet("dev/generate-hashes")]

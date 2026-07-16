@@ -2,15 +2,14 @@
 
 public class MedicalRecord
 {
-    public Guid Id { get; set; } = Guid.NewGuid();
-
-    public int PatientId { get; set; } // int
+    public int Id { get; set; } // int auto-increment
+    public int PatientId { get; set; }
     public Patient Patient { get; set; } = null!;
 
-    public int DentistId { get; set; } // int
+    public int DentistId { get; set; }
     public Dentist Dentist { get; set; } = null!;
 
-    public Guid? AppointmentId { get; set; }
+    public int? AppointmentId { get; set; }
     public Appointment? Appointment { get; set; }
 
     public string Diagnosis { get; set; } = string.Empty;

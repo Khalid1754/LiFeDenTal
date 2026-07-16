@@ -8,7 +8,7 @@ public record CreateAppointmentRequest(
 );
 
 public record AppointmentResponse(
-    Guid Id,
+    int Id, // int istället för Guid
     string PatientName,
     string DentistName,
     string RoomName,

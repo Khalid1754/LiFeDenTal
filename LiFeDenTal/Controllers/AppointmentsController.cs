@@ -18,8 +18,8 @@ public class AppointmentsController : ControllerBase
         _appointmentService = appointmentService;
     }
 
-    private Guid CurrentUserId =>
-        Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
+    private int CurrentUserId =>
+    int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
 
     private string CurrentUserRole =>
         User.FindFirstValue(ClaimTypes.Role)!;
@@ -66,7 +66,7 @@ public class AppointmentsController : ControllerBase
     // Avboka (patient avbokar sin egen, admin/receptionist avbokar vilken som helst)
     [HttpDelete("{id}/cancel")]
     [Authorize(Roles = "Patient,Admin,Receptionist")]
-    public async Task<IActionResult> Cancel(Guid id, CancelAppointmentRequest request)
+    public async Task<IActionResult> Cancel(int id, CancelAppointmentRequest request)
     {
         var (success, error) = await _appointmentService
             .CancelAppointmentAsync(id, CurrentUserId, CurrentUserRole, request.CancellationReason);

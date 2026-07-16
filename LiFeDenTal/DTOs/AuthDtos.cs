@@ -11,7 +11,7 @@ public record RegisterRequest(
 public record LoginRequest(string Email, string Password);
 
 public record UserResponse(
-    Guid Id,
+    int Id,  // int istället för Guid
     string Email,
     string FirstName,
     string LastName,

@@ -116,27 +116,27 @@ public class LiFeDenTalDbContext : DbContext
         modelBuilder.Entity<User>().HasData(
             new User
             {
-                Id = adminId,
-                Email = "admin@lifedental.se",
-                FirstName = "Khalid",
-                LastName = "Hassan",
-                Role = UserRole.Admin,
-                PasswordHash = "",
-                Password = "Admin123!",
-                IsActive = true,
-                CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, DateTimeKind.Utc)
+                    Id = 1,
+                    Email = "admin@lifedental.se",
+                    FirstName = "Admin",
+                    LastName = "Adminsson",
+                    Role = UserRole.Admin,
+                    PasswordHash = "",
+                    Password = "Admin123!",
+                    IsActive = true,
+                    CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, DateTimeKind.Utc)
             },
             new User
             {
-                Id = dentistUserId,
-                Email = "dentist@lifedental.se",
-                FirstName = "Hirsi",
-                LastName = "Aden",
-                Role = UserRole.Dentist,
-                PasswordHash = "",
-                Password = "Dentist123!",
-                IsActive = true,
-                CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, DateTimeKind.Utc)
+                    Id = 2,
+                    Email = "dentist@lifedental.se",
+                    FirstName = "Erik",
+                    LastName = "Larsson",
+                    Role = UserRole.Dentist,
+                    PasswordHash = "",
+                    Password = "Dentist123!",
+                    IsActive = true,
+                    CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, DateTimeKind.Utc)
             }
         );
 

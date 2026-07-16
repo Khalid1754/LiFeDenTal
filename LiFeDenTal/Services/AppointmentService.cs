@@ -43,7 +43,7 @@ public class AppointmentService
 
     // Patient bokar tid
     public async Task<(bool Success, string? Error, AppointmentResponse? Result)>
-    CreateAppointmentAsync(Guid patientUserId, CreateAppointmentRequest request)
+    CreateAppointmentAsync(int patientUserId, CreateAppointmentRequest request)
     {
         // Validera tid
         if (request.StartTime >= request.EndTime)
@@ -93,7 +93,7 @@ public class AppointmentService
     }
 
     // Hämta bokningar för en specifik patient
-    public async Task<List<AppointmentResponse>> GetPatientAppointmentsAsync(Guid patientUserId)
+    public async Task<List<AppointmentResponse>> GetPatientAppointmentsAsync(int patientUserId)
     {
         var appointments = await _db.Appointments
             .Include(a => a.Patient).ThenInclude(p => p.User)
@@ -108,7 +108,7 @@ public class AppointmentService
     }
 
     // Hämta bokningar för en specifik tandläkare
-    public async Task<List<AppointmentResponse>> GetDentistAppointmentsAsync(Guid dentistUserId)
+    public async Task<List<AppointmentResponse>> GetDentistAppointmentsAsync(int dentistUserId)
     {
         var appointments = await _db.Appointments
             .Include(a => a.Patient).ThenInclude(p => p.User)
@@ -138,7 +138,7 @@ public class AppointmentService
 
     // Avboka
     public async Task<(bool Success, string? Error)> CancelAppointmentAsync(
-        Guid appointmentId, Guid requestingUserId, string userRole, string? reason)
+        int appointmentId, int requestingUserId, string userRole, string? reason)
     {
         var appointment = await _db.Appointments
             .Include(a => a.Patient)

@@ -2,15 +2,14 @@
 
 public class Appointment
 {
-    public Guid Id { get; set; } = Guid.NewGuid();
-
-    public int PatientId { get; set; } // int
+    public int Id { get; set; } // int auto-increment
+    public int PatientId { get; set; }
     public Patient Patient { get; set; } = null!;
 
-    public int DentistId { get; set; } // int
+    public int DentistId { get; set; }
     public Dentist Dentist { get; set; } = null!;
 
-    public int TreatmentRoomId { get; set; } // int
+    public int TreatmentRoomId { get; set; }
     public TreatmentRoom TreatmentRoom { get; set; } = null!;
 
     public DateTime StartTime { get; set; }
@@ -19,7 +18,7 @@ public class Appointment
     public string? Reason { get; set; }
     public string? Notes { get; set; }
 
-    public Guid CreatedByUserId { get; set; }
+    public int CreatedByUserId { get; set; }
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
     public DateTime? CancelledAt { get; set; }
     public string? CancellationReason { get; set; }
