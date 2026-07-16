@@ -37,11 +37,20 @@ public class AuthController : ControllerBase
             FirstName = request.FirstName,
             LastName = request.LastName,
             PhoneNumber = request.PhoneNumber,
-            Role = UserRole.Patient // Självregistrering ger alltid Patient-roll
+            Role = UserRole.Patient
         };
         user.PasswordHash = _hasher.Hash(user, request.Password);
 
         _db.Users.Add(user);
+
+        // Skapa patientprofil automatiskt
+        var patient = new Patient
+        {
+            UserId = user.Id,
+            DateOfBirth = DateOnly.FromDateTime(DateTime.Today) // placeholder
+        };
+        _db.Patients.Add(patient);
+
         await _db.SaveChangesAsync();
 
         return Ok(new UserResponse(user.Id, user.Email, user.FirstName, user.LastName, user.Role.ToString()));

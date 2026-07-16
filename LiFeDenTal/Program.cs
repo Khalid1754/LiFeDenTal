@@ -32,6 +32,7 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
 
 builder.Services.AddAuthorization();
 builder.Services.AddScoped<PasswordHasher>();
+builder.Services.AddScoped<AppointmentService>();
 
 // Add services to the container.
 
