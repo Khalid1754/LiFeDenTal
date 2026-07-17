@@ -1,4 +1,5 @@
 using LiFeDenTal.Data;
+using LiFeDenTal.Helpers;
 using LiFeDenTal.Services;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
@@ -34,10 +35,19 @@ builder.Services.AddAuthorization();
 builder.Services.AddScoped<PasswordHasher>();
 builder.Services.AddScoped<AppointmentService>();
 builder.Services.AddScoped<MedicalRecordService>();
+builder.Services.AddScoped<AvailabilityService>();
 
 // Add services to the container.
 
-builder.Services.AddControllers();
+//builder.Services.AddControllers();
+
+builder.Services.AddControllers()
+    .AddJsonOptions(options =>
+    {
+        options.JsonSerializerOptions.Converters.Add(new DateOnlyJsonConverter());
+    });
+
+
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
 builder.Services.AddEndpointsApiExplorer();

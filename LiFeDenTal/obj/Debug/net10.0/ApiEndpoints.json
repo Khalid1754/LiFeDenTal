@@ -199,6 +199,63 @@
     ]
   },
   {
+    "ContainingType": "LiFeDenTal.Controllers.AvailabilityController",
+    "Method": "GetAllAvailability",
+    "RelativePath": "api/Availability/all",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "date",
+        "Type": "System.DateOnly",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[LiFeDenTal.DTOs.DentistAvailabilityResponse, LiFeDenTal, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "LiFeDenTal.Controllers.AvailabilityController",
+    "Method": "GetDentistAvailability",
+    "RelativePath": "api/Availability/dentist/{dentistId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dentistId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "date",
+        "Type": "System.DateOnly",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "LiFeDenTal.DTOs.DentistAvailabilityResponse",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
     "ContainingType": "LiFeDenTal.Controllers.MedicalRecordsController",
     "Method": "Create",
     "RelativePath": "api/MedicalRecords",
