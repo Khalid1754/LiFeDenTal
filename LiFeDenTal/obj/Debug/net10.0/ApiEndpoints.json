@@ -582,6 +582,16 @@
   },
   {
     "ContainingType": "LiFeDenTal.Controllers.ReceptionistController",
+    "Method": "GetDentists",
+    "RelativePath": "api/Receptionist/dentists",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "LiFeDenTal.Controllers.ReceptionistController",
     "Method": "GetAllPatients",
     "RelativePath": "api/Receptionist/patients",
     "HttpMethod": "GET",

@@ -214,4 +214,21 @@ public class ReceptionistController : ControllerBase
 
         return Ok(new { user.Id, user.Email, user.FirstName, user.LastName });
     }
+
+    [HttpGet("dentists")]
+    public async Task<IActionResult> GetDentists()
+    {
+        var dentists = await _db.Dentists
+            .Include(d => d.User)
+            .Select(d => new
+            {
+                d.Id,
+                d.User.FirstName,
+                d.User.LastName,
+                d.Specialization
+            })
+            .ToListAsync();
+
+        return Ok(dentists);
+    }
 }
