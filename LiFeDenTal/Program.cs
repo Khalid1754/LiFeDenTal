@@ -36,6 +36,7 @@ builder.Services.AddScoped<PasswordHasher>();
 builder.Services.AddScoped<AppointmentService>();
 builder.Services.AddScoped<MedicalRecordService>();
 builder.Services.AddScoped<AvailabilityService>();
+builder.Services.AddScoped<AdminService>();
 
 // Add services to the container.
 
