@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("LiFeDenTal")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+010149fce314e096d0734c06b48ec61f0e45e0ef")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5f2005f0372ad09c387378cc1cfc31c99e7e5139")]
 [assembly: System.Reflection.AssemblyProductAttribute("LiFeDenTal")]
 [assembly: System.Reflection.AssemblyTitleAttribute("LiFeDenTal")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

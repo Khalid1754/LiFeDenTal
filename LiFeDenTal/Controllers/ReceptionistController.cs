@@ -183,4 +183,35 @@ public class ReceptionistController : ControllerBase
 
         return Ok(patients);
     }
+
+    [HttpPost("patients")]
+    public async Task<IActionResult> CreatePatient(RegisterRequest request)
+    {
+        if (await _db.Users.AnyAsync(u => u.Email == request.Email))
+            return Conflict("Email är redan registrerad.");
+
+        var user = new User
+        {
+            Email = request.Email,
+            FirstName = request.FirstName,
+            LastName = request.LastName,
+            PhoneNumber = request.PhoneNumber,
+            Role = UserRole.Patient,
+            PasswordHash = "",
+            Password = request.Password
+        };
+
+        _db.Users.Add(user);
+        await _db.SaveChangesAsync();
+
+        var patient = new Patient
+        {
+            UserId = user.Id,
+            DateOfBirth = DateOnly.FromDateTime(DateTime.Today)
+        };
+        _db.Patients.Add(patient);
+        await _db.SaveChangesAsync();
+
+        return Ok(new { user.Id, user.Email, user.FirstName, user.LastName });
+    }
 }

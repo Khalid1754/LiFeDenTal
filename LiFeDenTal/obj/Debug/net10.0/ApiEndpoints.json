@@ -591,6 +591,22 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "LiFeDenTal.Controllers.ReceptionistController",
+    "Method": "CreatePatient",
+    "RelativePath": "api/Receptionist/patients",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "LiFeDenTal.DTOs.RegisterRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "LiFeDenTal.Controllers.WeatherForecastController",
     "Method": "Get",
     "RelativePath": "WeatherForecast",
