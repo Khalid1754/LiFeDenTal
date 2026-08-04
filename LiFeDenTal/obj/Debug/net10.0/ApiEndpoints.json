@@ -617,6 +617,22 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "LiFeDenTal.Controllers.ReceptionistController",
+    "Method": "GetPatientDetails",
+    "RelativePath": "api/Receptionist/patients/{patientId}/details",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "patientId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "LiFeDenTal.Controllers.WeatherForecastController",
     "Method": "Get",
     "RelativePath": "WeatherForecast",

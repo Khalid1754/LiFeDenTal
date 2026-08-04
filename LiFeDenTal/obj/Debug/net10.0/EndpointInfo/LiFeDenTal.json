@@ -1107,6 +1107,29 @@
         }
       }
     },
+    "/api/Receptionist/patients/{patientId}/details": {
+      "get": {
+        "tags": [
+          "Receptionist"
+        ],
+        "parameters": [
+          {
+            "name": "patientId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/WeatherForecast": {
       "get": {
         "tags": [

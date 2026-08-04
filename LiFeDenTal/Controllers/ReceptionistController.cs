@@ -231,4 +231,62 @@ public class ReceptionistController : ControllerBase
 
         return Ok(dentists);
     }
+
+    [HttpGet("patients/{patientId}/details")]
+    public async Task<IActionResult> GetPatientDetails(int patientId)
+    {
+        var patient = await _db.Patients
+            .Include(p => p.User)
+            .Include(p => p.Appointments)
+                .ThenInclude(a => a.Dentist).ThenInclude(d => d.User)
+            .Include(p => p.Appointments)
+                .ThenInclude(a => a.TreatmentRoom)
+            .Include(p => p.MedicalRecords)
+                .ThenInclude(m => m.Dentist).ThenInclude(d => d.User)
+            .FirstOrDefaultAsync(p => p.Id == patientId);
+
+        if (patient is null)
+            return NotFound("Patienten hittades inte.");
+
+        return Ok(new
+        {
+            patient.Id,
+            patient.User.FirstName,
+            patient.User.LastName,
+            patient.User.Email,
+            patient.User.PhoneNumber,
+            patient.User.IsActive,
+            DateOfBirth = patient.DateOfBirth.ToString("yyyy-MM-dd"),
+            patient.Address,
+            patient.Allergies,
+            patient.InsuranceInfo,
+            patient.EmergencyContactName,
+            patient.EmergencyContactPhone,
+            Appointments = patient.Appointments
+                .OrderByDescending(a => a.StartTime)
+                .Select(a => new
+                {
+                    a.Id,
+                    a.StartTime,
+                    a.EndTime,
+                    a.Status,
+                    a.Reason,
+                    a.Notes,
+                    DentistName = $"{a.Dentist.User.FirstName} {a.Dentist.User.LastName}",
+                    RoomName = a.TreatmentRoom.Name
+                }),
+            MedicalRecords = patient.MedicalRecords
+                .OrderByDescending(m => m.CreatedAt)
+                .Select(m => new
+                {
+                    m.Id,
+                    m.Diagnosis,
+                    m.Treatment,
+                    m.Notes,
+                    m.Prescription,
+                    m.CreatedAt,
+                    DentistName = $"{m.Dentist.User.FirstName} {m.Dentist.User.LastName}"
+                })
+        });
+    }
 }

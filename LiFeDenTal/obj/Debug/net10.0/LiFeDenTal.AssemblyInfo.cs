@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("LiFeDenTal")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+df0ef78d813fe1eb4aa10bef5d7406e3fb399a02")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+bb6ca3c552688017d1eb03524e56483a054368e7")]
 [assembly: System.Reflection.AssemblyProductAttribute("LiFeDenTal")]
 [assembly: System.Reflection.AssemblyTitleAttribute("LiFeDenTal")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
