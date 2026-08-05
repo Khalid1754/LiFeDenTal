@@ -7,18 +7,22 @@ import {
   ChatBubbleLeftIcon, Cog6ToothIcon, ArrowRightOnRectangleIcon
 } from '@heroicons/react/24/outline'
 
-const navItems = [
-  { to: '/dashboard', icon: HomeIcon, label: 'Dashboard' },
-  { to: '/patients', icon: UsersIcon, label: 'Patients' },
-  { to: '/appointments', icon: CalendarDaysIcon, label: 'Appointments' },
-  { to: '/calendar', icon: CalendarIcon, label: 'Calendar' },
-  { to: '/treatments', icon: BeakerIcon, label: 'Treatments' },
-  { to: '/billing', icon: CreditCardIcon, label: 'Billing' },
-  { to: '/reports', icon: ChartBarIcon, label: 'Reports' },
-  { to: '/inventory', icon: ArchiveBoxIcon, label: 'Inventory' },
-  { to: '/messages', icon: ChatBubbleLeftIcon, label: 'Messages' },
-  { to: '/settings', icon: Cog6ToothIcon, label: 'Settings' },
+const user = JSON.parse(localStorage.getItem('user') || '{}')
+
+const allNavItems = [
+  { to: '/dashboard', icon: HomeIcon, label: 'Dashboard', roles: ['Admin', 'Receptionist', 'Dentist', 'DentalNurse', 'DentalHygienist'] },
+  { to: '/patient', icon: HomeIcon, label: 'Dashboard', roles: ['Patient'] },
+  { to: '/patients', icon: UsersIcon, label: 'Patients', roles: ['Admin', 'Receptionist', 'Dentist'] },
+  { to: '/appointments', icon: CalendarDaysIcon, label: 'Appointments', roles: ['Admin', 'Receptionist'] },
+  { to: '/calendar', icon: CalendarIcon, label: 'Calendar', roles: ['Admin', 'Receptionist', 'Dentist'] },
+  { to: '/treatments', icon: BeakerIcon, label: 'Treatments', roles: ['Admin', 'Receptionist', 'Dentist'] },
+  { to: '/billing', icon: CreditCardIcon, label: 'Billing', roles: ['Admin', 'Receptionist'] },
+  { to: '/reports', icon: ChartBarIcon, label: 'Reports', roles: ['Admin'] },
+  { to: '/messages', icon: ChatBubbleLeftIcon, label: 'Messages', roles: ['Admin', 'Receptionist', 'Dentist', 'Patient'] },
+  { to: '/settings', icon: Cog6ToothIcon, label: 'Settings', roles: ['Admin', 'Receptionist', 'Dentist', 'Patient'] },
 ]
+
+const navItems = allNavItems.filter(item => item.roles.includes(user.role))
 
 export default function Layout() {
   const navigate = useNavigate()

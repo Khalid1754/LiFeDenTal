@@ -6,6 +6,7 @@ import Patients from './pages/Patients'
 import NewPatient from './pages/NewPatient'
 import Appointments from './pages/Appointments'
 import PatientDetails from './pages/PatientDetails'
+import PatientDashboard from './pages/PatientDashboard'
 
 
 function PrivateRoute({ children }) {
@@ -23,6 +24,7 @@ export default function App() {
           <Route path="dashboard" element={<Dashboard />} />
           <Route path="patients" element={<Patients />} />
           <Route path="patients/new" element={<NewPatient />} />
+          <Route path="patient" element={<PatientDashboard />} />
           <Route path="patients/:id" element={<PatientDetails />} />
           <Route path="appointments" element={<Appointments />} />
         </Route>
