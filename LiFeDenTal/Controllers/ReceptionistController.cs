@@ -289,4 +289,44 @@ public class ReceptionistController : ControllerBase
                 })
         });
     }
+
+    [HttpGet("dashboard")]
+    public async Task<IActionResult> GetDashboardStats()
+    {
+        var today = DateTime.Today;
+        var tomorrow = today.AddDays(1);
+
+        var todayAppointments = await _db.Appointments
+            .Include(a => a.Patient).ThenInclude(p => p.User)
+            .Include(a => a.Dentist).ThenInclude(d => d.User)
+            .Include(a => a.TreatmentRoom)
+            .Where(a => a.StartTime >= today && a.StartTime < tomorrow)
+            .OrderBy(a => a.StartTime)
+            .ToListAsync();
+
+        var totalPatients = await _db.Patients.CountAsync();
+        var totalAppointments = await _db.Appointments.CountAsync();
+        var completedToday = todayAppointments.Count(a => a.Status == AppointmentStatus.Completed);
+        var cancelledToday = todayAppointments.Count(a => a.Status == AppointmentStatus.Cancelled);
+
+        return Ok(new
+        {
+            TotalPatients = totalPatients,
+            TotalAppointments = totalAppointments,
+            AppointmentsToday = todayAppointments.Count,
+            CompletedToday = completedToday,
+            CancelledToday = cancelledToday,
+            TodayAppointments = todayAppointments.Select(a => new
+            {
+                a.Id,
+                a.StartTime,
+                a.EndTime,
+                a.Status,
+                a.Reason,
+                PatientName = $"{a.Patient.User.FirstName} {a.Patient.User.LastName}",
+                DentistName = $"{a.Dentist.User.FirstName} {a.Dentist.User.LastName}",
+                RoomName = a.TreatmentRoom.Name
+            })
+        });
+    }
 }
