@@ -12,6 +12,7 @@ const user = JSON.parse(localStorage.getItem('user') || '{}')
 const allNavItems = [
   { to: '/dashboard', icon: HomeIcon, label: 'Dashboard', roles: ['Admin', 'Receptionist', 'Dentist', 'DentalNurse', 'DentalHygienist'] },
   { to: '/patient', icon: HomeIcon, label: 'Dashboard', roles: ['Patient'] },
+  { to: '/dentist', icon: HomeIcon, label: 'Dashboard', roles: ['Dentist'] },
   { to: '/patients', icon: UsersIcon, label: 'Patients', roles: ['Admin', 'Receptionist', 'Dentist'] },
   { to: '/appointments', icon: CalendarDaysIcon, label: 'Appointments', roles: ['Admin', 'Receptionist'] },
   { to: '/calendar', icon: CalendarIcon, label: 'Calendar', roles: ['Admin', 'Receptionist', 'Dentist'] },

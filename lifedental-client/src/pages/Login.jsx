@@ -23,7 +23,7 @@ export default function Login() {
 
       // Navigera baserat på roll
       if (user.role === 'Admin') navigate('/admin')
-      else if (user.role === 'Dentist') navigate('/dashboard')
+      else if (user.role === 'Dentist') navigate('/dentist')
       else if (user.role === 'Receptionist') navigate('/dashboard')
       else if (user.role === 'Patient') navigate('/patient')
       else navigate('/dashboard')

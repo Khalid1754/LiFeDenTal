@@ -162,16 +162,17 @@ public class AppointmentService
     }
 
     private static AppointmentResponse MapToResponse(
-        Appointment a, User patientUser, User dentistUser, TreatmentRoom room) =>
-        new(
-            a.Id,
-            $"{patientUser.FirstName} {patientUser.LastName}",
-            $"{dentistUser.FirstName} {dentistUser.LastName}",
-            room.Name,
-            a.StartTime,
-            a.EndTime,
-            a.Status.ToString(),
-            a.Reason,
-            a.Notes
-        );
+    Appointment a, User patientUser, User dentistUser, TreatmentRoom room) =>
+    new(
+        a.Id,
+        a.PatientId, // lägg till denna
+        $"{patientUser.FirstName} {patientUser.LastName}",
+        $"{dentistUser.FirstName} {dentistUser.LastName}",
+        room.Name,
+        a.StartTime,
+        a.EndTime,
+        a.Status.ToString(),
+        a.Reason,
+        a.Notes
+    );
 }

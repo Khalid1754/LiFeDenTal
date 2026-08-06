@@ -1191,6 +1191,10 @@
             "type": "integer",
             "format": "int32"
           },
+          "patientId": {
+            "type": "integer",
+            "format": "int32"
+          },
           "patientName": {
             "type": "string",
             "nullable": true

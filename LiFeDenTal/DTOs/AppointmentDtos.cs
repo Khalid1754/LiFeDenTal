@@ -9,6 +9,7 @@ public record CreateAppointmentRequest(
 
 public record AppointmentResponse(
     int Id, // int istället för Guid
+    int PatientId,
     string PatientName,
     string DentistName,
     string RoomName,

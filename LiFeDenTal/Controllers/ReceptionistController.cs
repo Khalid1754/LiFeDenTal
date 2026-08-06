@@ -89,16 +89,17 @@ public class ReceptionistController : ControllerBase
         await _db.SaveChangesAsync();
 
         return Ok(new AppointmentResponse(
-            appointment.Id,
-            $"{patient.User.FirstName} {patient.User.LastName}",
-            $"{dentist.User.FirstName} {dentist.User.LastName}",
-            room.Name,
-            appointment.StartTime,
-            appointment.EndTime,
-            appointment.Status.ToString(),
-            appointment.Reason,
-            appointment.Notes
-        ));
+    appointment.Id,
+    appointment.PatientId, // lägg till denna
+    $"{patient.User.FirstName} {patient.User.LastName}",
+    $"{dentist.User.FirstName} {dentist.User.LastName}",
+    room.Name,
+    appointment.StartTime,
+    appointment.EndTime,
+    appointment.Status.ToString(),
+    appointment.Reason,
+    appointment.Notes
+));
     }
 
     // Se alla bokningar
@@ -122,16 +123,17 @@ public class ReceptionistController : ControllerBase
             .ToListAsync();
 
         var result = appointments.Select(a => new AppointmentResponse(
-            a.Id,
-            $"{a.Patient.User.FirstName} {a.Patient.User.LastName}",
-            $"{a.Dentist.User.FirstName} {a.Dentist.User.LastName}",
-            a.TreatmentRoom.Name,
-            a.StartTime,
-            a.EndTime,
-            a.Status.ToString(),
-            a.Reason,
-            a.Notes
-        )).ToList();
+    a.Id,
+    a.PatientId, // lägg till denna
+    $"{a.Patient.User.FirstName} {a.Patient.User.LastName}",
+    $"{a.Dentist.User.FirstName} {a.Dentist.User.LastName}",
+    a.TreatmentRoom.Name,
+    a.StartTime,
+    a.EndTime,
+    a.Status.ToString(),
+    a.Reason,
+    a.Notes
+)).ToList();
 
         return Ok(result);
     }
