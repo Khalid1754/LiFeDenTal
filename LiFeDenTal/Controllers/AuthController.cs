@@ -124,4 +124,46 @@ public class AuthController : ControllerBase
             DentistHash = hasher.HashPassword(dummy, "Dentist123!")
         });
     }
+
+    [HttpPut("profile")]
+    [Authorize]
+    public async Task<IActionResult> UpdateProfile(UpdateProfileRequest request)
+    {
+        var userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
+        var user = await _db.Users.FindAsync(userId);
+        if (user is null) return NotFound();
+
+        if (request.FirstName is not null) user.FirstName = request.FirstName;
+        if (request.LastName is not null) user.LastName = request.LastName;
+        if (request.PhoneNumber is not null) user.PhoneNumber = request.PhoneNumber;
+
+        await _db.SaveChangesAsync();
+        return Ok(new UserResponse(user.Id, user.Email, user.FirstName, user.LastName, user.Role.ToString()));
+    }
+
+    [HttpPut("change-password")]
+    [Authorize]
+    public async Task<IActionResult> ChangePassword(ChangePasswordRequest request)
+    {
+        var userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
+        var user = await _db.Users.FindAsync(userId);
+        if (user is null) return NotFound();
+
+        // Verify current password
+        if (user.Role == UserRole.Patient)
+        {
+            if (!_hasher.Verify(user, user.PasswordHash, request.CurrentPassword))
+                return BadRequest("Current password is incorrect.");
+            user.PasswordHash = _hasher.Hash(user, request.NewPassword);
+        }
+        else
+        {
+            if (user.Password != request.CurrentPassword)
+                return BadRequest("Current password is incorrect.");
+            user.Password = request.NewPassword;
+        }
+
+        await _db.SaveChangesAsync();
+        return Ok("Password updated successfully.");
+    }
 }

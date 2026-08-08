@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { ShieldCheckIcon } from '@heroicons/react/24/outline'
 import { NavLink, useNavigate, Outlet } from 'react-router-dom'
 import api from '../api/axios'
 import {
@@ -13,6 +14,7 @@ const allNavItems = [
   { to: '/dashboard', icon: HomeIcon, label: 'Dashboard', roles: ['Admin', 'Receptionist', 'Dentist', 'DentalNurse', 'DentalHygienist'] },
   { to: '/patient', icon: HomeIcon, label: 'Dashboard', roles: ['Patient'] },
   { to: '/dentist', icon: HomeIcon, label: 'Dashboard', roles: ['Dentist'] },
+  { to: '/admin', icon: ShieldCheckIcon, label: 'Admin', roles: ['Admin'] },
   { to: '/patients', icon: UsersIcon, label: 'Patients', roles: ['Admin', 'Receptionist', 'Dentist'] },
   { to: '/appointments', icon: CalendarDaysIcon, label: 'Appointments', roles: ['Admin', 'Receptionist'] },
   { to: '/calendar', icon: CalendarIcon, label: 'Calendar', roles: ['Admin', 'Receptionist', 'Dentist', 'Patient'] },

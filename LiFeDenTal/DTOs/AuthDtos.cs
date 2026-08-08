@@ -17,3 +17,14 @@ public record UserResponse(
     string LastName,
     string Role
 );
+
+public record UpdateProfileRequest(
+    string? FirstName,
+    string? LastName,
+    string? PhoneNumber
+);
+
+public record ChangePasswordRequest(
+    string CurrentPassword,
+    string NewPassword
+);

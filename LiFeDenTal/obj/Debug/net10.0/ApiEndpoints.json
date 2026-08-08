@@ -227,6 +227,22 @@
   },
   {
     "ContainingType": "LiFeDenTal.Controllers.AuthController",
+    "Method": "ChangePassword",
+    "RelativePath": "api/Auth/change-password",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "LiFeDenTal.DTOs.ChangePasswordRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "LiFeDenTal.Controllers.AuthController",
     "Method": "GenerateHashes",
     "RelativePath": "api/Auth/dev/generate-hashes",
     "HttpMethod": "GET",
@@ -290,6 +306,22 @@
         "StatusCode": 200
       }
     ]
+  },
+  {
+    "ContainingType": "LiFeDenTal.Controllers.AuthController",
+    "Method": "UpdateProfile",
+    "RelativePath": "api/Auth/profile",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "LiFeDenTal.DTOs.UpdateProfileRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
   },
   {
     "ContainingType": "LiFeDenTal.Controllers.AuthController",
