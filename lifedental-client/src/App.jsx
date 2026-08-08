@@ -11,6 +11,7 @@ import DentistDashboard from './pages/DentistDashboard'
 import Calendar from './pages/Calendar'
 import AdminPanel from './pages/AdminPanel'
 import Settings from './pages/Settings'
+import BookAppointment from './pages/BookAppointment'
 
 
 function PrivateRoute({ children }) {
@@ -28,6 +29,7 @@ export default function App() {
           <Route path="dashboard" element={<Dashboard />} />
           <Route path="settings" element={<Settings />} />
           <Route path="admin" element={<AdminPanel />} />
+          <Route path="book" element={<BookAppointment />} />
           <Route path="calendar" element={<Calendar />} />
           <Route path="dentist" element={<DentistDashboard />} />
           <Route path="patients" element={<Patients />} />

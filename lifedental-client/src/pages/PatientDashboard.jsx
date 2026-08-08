@@ -18,6 +18,7 @@ const statusColors = {
   NoShow: 'bg-orange-100 text-orange-700',
 }
 
+
 const statusIcons = {
   Scheduled: ClockIcon,
   Confirmed: CheckCircleIcon,
@@ -82,14 +83,23 @@ export default function PatientDashboard() {
   return (
     <div>
       {/* Welcome header */}
-      <div className="mb-6">
-        <h1 className="text-2xl font-bold text-gray-900">
-          Welcome, {user.firstName}!
-        </h1>
-        <p className="text-gray-500 text-sm mt-0.5">
-          Here's an overview of your dental care.
-        </p>
-      </div>
+      <div className="flex items-center justify-between mb-6">
+  <div>
+    <h1 className="text-2xl font-bold text-gray-900">
+      Welcome, {user.firstName}!
+    </h1>
+    <p className="text-gray-500 text-sm mt-0.5">
+      Here's an overview of your dental care.
+    </p>
+  </div>
+  <button
+    onClick={() => navigate('/book')}
+    className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition"
+  >
+    <CalendarDaysIcon className="w-4 h-4" />
+    Book Appointment
+  </button>
+</div>
 
       {/* Stats */}
       <div className="grid grid-cols-3 gap-4 mb-6">
