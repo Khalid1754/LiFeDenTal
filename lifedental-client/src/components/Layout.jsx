@@ -15,7 +15,7 @@ const allNavItems = [
   { to: '/dentist', icon: HomeIcon, label: 'Dashboard', roles: ['Dentist'] },
   { to: '/patients', icon: UsersIcon, label: 'Patients', roles: ['Admin', 'Receptionist', 'Dentist'] },
   { to: '/appointments', icon: CalendarDaysIcon, label: 'Appointments', roles: ['Admin', 'Receptionist'] },
-  { to: '/calendar', icon: CalendarIcon, label: 'Calendar', roles: ['Admin', 'Receptionist', 'Dentist'] },
+  { to: '/calendar', icon: CalendarIcon, label: 'Calendar', roles: ['Admin', 'Receptionist', 'Dentist', 'Patient'] },
   { to: '/treatments', icon: BeakerIcon, label: 'Treatments', roles: ['Admin', 'Receptionist', 'Dentist'] },
   { to: '/billing', icon: CreditCardIcon, label: 'Billing', roles: ['Admin', 'Receptionist'] },
   { to: '/reports', icon: ChartBarIcon, label: 'Reports', roles: ['Admin'] },
