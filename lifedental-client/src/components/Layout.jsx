@@ -11,18 +11,25 @@ import {
 const user = JSON.parse(localStorage.getItem('user') || '{}')
 
 const allNavItems = [
-  { to: '/dashboard', icon: HomeIcon, label: 'Dashboard', roles: ['Admin', 'Receptionist', 'Dentist', 'DentalNurse', 'DentalHygienist'] },
-  { to: '/patient', icon: HomeIcon, label: 'Dashboard', roles: ['Patient'] },
-  { to: '/dentist', icon: HomeIcon, label: 'Dashboard', roles: ['Dentist'] },
-  { to: '/admin', icon: ShieldCheckIcon, label: 'Admin', roles: ['Admin'] },
+  // Admin & Receptionist
+  { to: '/dashboard', icon: HomeIcon, label: 'Dashboard', roles: ['Admin', 'Receptionist'] },
   { to: '/patients', icon: UsersIcon, label: 'Patients', roles: ['Admin', 'Receptionist', 'Dentist'] },
   { to: '/appointments', icon: CalendarDaysIcon, label: 'Appointments', roles: ['Admin', 'Receptionist'] },
   { to: '/calendar', icon: CalendarIcon, label: 'Calendar', roles: ['Admin', 'Receptionist', 'Dentist', 'Patient'] },
-  { to: '/treatments', icon: BeakerIcon, label: 'Treatments', roles: ['Admin', 'Receptionist', 'Dentist'] },
-  { to: '/billing', icon: CreditCardIcon, label: 'Billing', roles: ['Admin', 'Receptionist'] },
-  { to: '/reports', icon: ChartBarIcon, label: 'Reports', roles: ['Admin'] },
+
+  // Dentist
+  { to: '/dentist', icon: HomeIcon, label: 'Dashboard', roles: ['Dentist'] },
+
+  // Patient
+  { to: '/patient', icon: HomeIcon, label: 'Dashboard', roles: ['Patient'] },
+  { to: '/book', icon: CalendarDaysIcon, label: 'Appointments', roles: ['Patient'] },
+
+  // Shared
   { to: '/messages', icon: ChatBubbleLeftIcon, label: 'Messages', roles: ['Admin', 'Receptionist', 'Dentist', 'Patient'] },
   { to: '/settings', icon: Cog6ToothIcon, label: 'Settings', roles: ['Admin', 'Receptionist', 'Dentist', 'Patient'] },
+
+  // Admin only
+  { to: '/admin', icon: ShieldCheckIcon, label: 'Admin', roles: ['Admin'] },
 ]
 
 const navItems = allNavItems.filter(item => item.roles.includes(user.role))
