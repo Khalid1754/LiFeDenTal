@@ -176,6 +176,39 @@ namespace LiFeDenTal.Migrations
                     b.ToTable("MedicalRecords");
                 });
 
+            modelBuilder.Entity("LiFeDenTal.Models.Message", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Content")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsRead")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("ReceiverId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SenderId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("SentAt")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ReceiverId");
+
+                    b.HasIndex("SenderId");
+
+                    b.ToTable("Messages");
+                });
+
             modelBuilder.Entity("LiFeDenTal.Models.Patient", b =>
                 {
                     b.Property<int>("Id")
@@ -412,6 +445,25 @@ namespace LiFeDenTal.Migrations
                     b.Navigation("Dentist");
 
                     b.Navigation("Patient");
+                });
+
+            modelBuilder.Entity("LiFeDenTal.Models.Message", b =>
+                {
+                    b.HasOne("LiFeDenTal.Models.User", "Receiver")
+                        .WithMany()
+                        .HasForeignKey("ReceiverId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("LiFeDenTal.Models.User", "Sender")
+                        .WithMany()
+                        .HasForeignKey("SenderId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Receiver");
+
+                    b.Navigation("Sender");
                 });
 
             modelBuilder.Entity("LiFeDenTal.Models.Patient", b =>

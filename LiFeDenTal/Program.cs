@@ -37,6 +37,7 @@ builder.Services.AddScoped<AppointmentService>();
 builder.Services.AddScoped<MedicalRecordService>();
 builder.Services.AddScoped<AvailabilityService>();
 builder.Services.AddScoped<AdminService>();
+builder.Services.AddSignalR();
 
 // Add services to the container.
 
@@ -82,5 +83,6 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
+app.MapHub<LiFeDenTal.Hubs.ChatHub>("/hubs/chat");
 
 app.Run();
