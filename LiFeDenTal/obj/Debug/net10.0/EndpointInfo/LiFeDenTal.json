@@ -899,6 +899,53 @@
         }
       }
     },
+    "/api/Messages/users": {
+      "get": {
+        "tags": [
+          "Messages"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Messages/conversation/{otherUserId}": {
+      "get": {
+        "tags": [
+          "Messages"
+        ],
+        "parameters": [
+          {
+            "name": "otherUserId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Messages/inbox": {
+      "get": {
+        "tags": [
+          "Messages"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/Receptionist/appointments": {
       "post": {
         "tags": [
@@ -1717,6 +1764,9 @@
     },
     {
       "name": "MedicalRecords"
+    },
+    {
+      "name": "Messages"
     },
     {
       "name": "Receptionist"

@@ -8,13 +8,19 @@ export default defineConfig({
     tailwindcss(),
   ],
   server: {
-    port: 5173,
-    proxy: {
-      '/api': {
-        target: 'https://localhost:5001',
-        changeOrigin: true,
-        secure: false,
-      }
+  port: 5173,
+  proxy: {
+    '/api': {
+      target: 'https://localhost:5001',
+      changeOrigin: true,
+      secure: false,
+    },
+    '/hubs': {
+      target: 'https://localhost:5001',
+      changeOrigin: true,
+      secure: false,
+      ws: true, // WebSocket support för SignalR
     }
+  }
   }
 })

@@ -499,6 +499,42 @@
     ]
   },
   {
+    "ContainingType": "LiFeDenTal.Controllers.MessagesController",
+    "Method": "GetConversation",
+    "RelativePath": "api/Messages/conversation/{otherUserId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "otherUserId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "LiFeDenTal.Controllers.MessagesController",
+    "Method": "GetInbox",
+    "RelativePath": "api/Messages/inbox",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "LiFeDenTal.Controllers.MessagesController",
+    "Method": "GetUsers",
+    "RelativePath": "api/Messages/users",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "LiFeDenTal.Controllers.ReceptionistController",
     "Method": "CreateForPatient",
     "RelativePath": "api/Receptionist/appointments",
